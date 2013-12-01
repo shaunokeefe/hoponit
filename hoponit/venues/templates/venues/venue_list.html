@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block page_title %}Venues{% endblock page_title %}
+{% block content %}
+<table>
+{% for venue in venues %}
+<tr>
+  <td>{{venue.name}}</td>
+  <td>{{venue.get_type_display}}</td>
+  <td>{{venue.address.name}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock  %}

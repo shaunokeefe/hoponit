@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='base.html')),
+    url(r'^venue/', include('venues.urls')),
 
     # Examples:
     # url(r'^$', 'hoponit.views.home', name='home'),
