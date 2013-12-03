@@ -192,6 +192,7 @@ DJANGO_APPS = (
     # 'django.contrib.admindocs',
     'venues',
     'sightings',
+    'maps',
 )
 
 THIRD_PARTY_APPS = (

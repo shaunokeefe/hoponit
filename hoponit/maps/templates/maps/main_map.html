@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block page_title%}What beers are in {{suburb_name}} {% endblock %}
+{% block extra_css %}
+    <style type="text/css">
+      #map-canvas { height: 550px }
+      uu}
+    </style>
+{% endblock %}
+{% block extra_js %}
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNJJnj220pWaqfOwPM1XNEkh5S7pLiRUI&sensor=false">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-37.813, 144.963),
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+{% endblock %}
+{% block content %}
+<div id="search">
+    <form action={% url "map-search" %}>
+       Beers in: <input type="search" name="suburb_name" value="{{suburb_name}}"><br>
+    <input type="submit" value="submit">
+  </form>
+  {% for venue in venues %}
+  {{venue.name}}
+  {% endfor %}
+</div>
+<div id="map-canvas"/>
+{% endblock %}
