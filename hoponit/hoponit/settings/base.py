@@ -246,3 +246,5 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 ########## END WSGI CONFIGURATION
+MONGO_HOST = 'localhost'
+MONGO_PORT = 27017
