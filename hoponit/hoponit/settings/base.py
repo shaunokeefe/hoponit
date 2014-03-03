@@ -190,6 +190,8 @@ DJANGO_APPS = (
     # Admin panel and documentation:
     'django.contrib.admin',
     # 'django.contrib.admindocs',
+    'hoponit',
+    'harvest',
     'venues',
     'sightings',
     'maps',
