@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
         if cmd == "venue":
             venue_id = args[1]
-            untappd
+            venue = u.foursquare_id_to_untappd(venue_id)
 
         if cmd == "fs":
             venue_id = args[1]
