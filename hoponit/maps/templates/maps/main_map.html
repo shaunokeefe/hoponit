@@ -14,10 +14,23 @@
       function initialize() {
         var mapOptions = {
           center: new google.maps.LatLng(-37.813, 144.963),
-          zoom: 8
+          zoom: 15
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
+
+        {% for venue in venues %}
+            var latlong = new google.maps.LatLng({{venue.location.lat}}, {{venue.location.lng}})
+            var marker = new google.maps.Marker({
+                position: latlong,
+                title: "{{ venue.name }}"
+            });
+
+            marker.setMap(map);
+        {% endfor %}
+
+
+
       }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
