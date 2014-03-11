@@ -33,30 +33,3 @@ def fetch(suburb='Northcote'):
 
 def fetch_task(suburb='Northcote'):
     fetch(suburb=suburb)
-
-#def process_venue(suburb, foursquare_venue):
-#    foursquare_venue_id = foursquare_venue['id']
-#    checkins = untappd.get_venue_checkins(foursquare_venue_id=foursquare_venue_id)
-#
-#    if checkins:
-#        mongo_client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
-#
-#        # Try getting the foursquare info from mongo first
-#        venue = None
-#        mongo_response = mongo_client.hoponit.venues.find_one({'suburb': suburb})
-#        save_venue(suburb, foursquare_venue)
-#        save_checkins(suburb, foursquare_venue, checkins)
-#
-#def save_venue(suburb, venue):
-#    mongo_client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
-#
-#    # Try getting the foursquare info from mongo first
-#    venue = None
-#    mongo_response = mongo_client.hoponit.venues.find_one({'suburb': suburb})
-#    if mongo_response:
-#        venues = mongo_response.get('venues', None)
-#
-#    mongo_client.hoponit.venues.insert({'suburb': suburb, 'venues': venues})
-#
-#def save_checkins(suburb, venue, checkins):
-#    pass
