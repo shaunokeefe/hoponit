@@ -34,7 +34,7 @@
             position: latlong,
             title: "{{ venue.name }}"
         });
-        beers = "{% for checkin in venue.checkins %}{{checkin.beer.beer_name}}</br>{% endfor %}"
+        beers = "{% for beer in venue.unique_beers.values %}{{beer.beer_name}}</br>{% endfor %}"
         marker.beers = beers;
         markers.push(marker);
         marker.setMap(map);
