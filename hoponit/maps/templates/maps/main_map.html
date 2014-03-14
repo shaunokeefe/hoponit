@@ -13,26 +13,42 @@
     <script type="text/javascript">
       function initialize() {
         var mapOptions = {
-          center: new google.maps.LatLng(-37.813, 144.963),
+          center: new google.maps.LatLng(-37.7722, 144.9994),
           zoom: 15
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
 
-        {% for venue in venues %}
-            var latlong = new google.maps.LatLng({{venue.location.lat}}, {{venue.location.lng}})
-            var marker = new google.maps.Marker({
-                position: latlong,
-                title: "{{ venue.name }}"
+        var markers = Array();
+        var info_windows = Array();
+
+        var latlong;
+        var marker;
+        var beers;
+        var infowindow = new google.maps.InfoWindow({
+                content: "holding"
             });
-
-            marker.setMap(map);
+        {% for venue in venues %}
+        latlong = new google.maps.LatLng({{venue.location.lat}}, {{venue.location.lng}})
+        marker = new google.maps.Marker({
+            position: latlong,
+            title: "{{ venue.name }}"
+        });
+        beers = "{% for checkin in venue.checkins %}{{checkin.beer.beer_name}}</br>{% endfor %}"
+        marker.beers = beers;
+        markers.push(marker);
+        marker.setMap(map);
         {% endfor %}
-
-
-
+        for (var i=0; i < markers.length; i++){
+          marker = markers[i];
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(this.beers);
+            infowindow.open(map, this);
+          });
+        }
       }
-      google.maps.event.addDomListener(window, 'load', initialize);
+
+    google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 {% endblock %}
 {% block content %}
