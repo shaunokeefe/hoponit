@@ -43,6 +43,9 @@ def fetch(suburb='Northcote'):
         suburb_json['venues'].append(venue_json)
         suburb_json['unique_beers'] = suburb_unique_beers
         suburb_json['unique_beer_locations'] = suburb_unique_beer_locations
+        venue_id = venue['id']
+        mongo_client.hoponit.venues.remove({'_id': venue_id})
+        mongo_client.hoponit.venues.insert({'_id': venue_id, 'venue': venue_json})
 
     mongo_client.hoponit.suburbs.insert(suburb_json)
     return suburb_json
