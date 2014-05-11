@@ -15,10 +15,13 @@ def fetch(suburb='Northcote'):
     )
 
     venues = untappd.get_venues_for_suburb(suburb)
-
-    mongo_client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
     if not venues:
         logger.info("Could not find venues for suburb %s" % suburb)
+        return None
+
+    mongo_client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
+    if not mongo_client:
+        logger.info("Could not connect to Mongo client " % suburb)
         return None
     mongo_client.hoponit.suburbs.remove({'_id': suburb})
 
