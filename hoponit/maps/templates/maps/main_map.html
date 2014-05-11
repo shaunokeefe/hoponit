@@ -52,6 +52,11 @@
     </script>
 {% endblock %}
 {% block content %}
+{% if not venues %}
+<div>
+    None, it appears
+</div>
+{% endif %}
 <div id="search">
     <form action={% url "map-search" %}>
        Beers in: <input type="search" name="suburb_name" value="{{suburb_name}}"><br>
