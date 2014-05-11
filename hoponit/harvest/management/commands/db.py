@@ -20,9 +20,17 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        suburb_name = args[0]
-        mongo_client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
-        mongo_response = mongo_client.hoponit.suburbs.find_one({'_id': suburb_name})
+        cmd = args[0]
+        if cmd == "suburb":
+            suburb_name = args[1]
+            mongo_client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
+            mongo_response = mongo_client.hoponit.suburbs.find_one({'_id': suburb_name})
+
+        elif cmd == "venue":
+            venue_id = args[1]
+            mongo_client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
+            mongo_response = mongo_client.hoponit.venue.find_one({'_id': venue_id})
+
         pp = pprint.PrettyPrinter(indent=1)
         pp.pprint(mongo_response)
         self.stdout.write('Succcess')
