@@ -1,9 +1,11 @@
+import logging
 from pymongo import MongoClient
 
 from django.conf import settings
 
 from .untappd import UntappdApi
 
+logger = logging.getLogger(__name__)
 
 def fetch(suburb='Northcote'):
     untappd = UntappdApi(
