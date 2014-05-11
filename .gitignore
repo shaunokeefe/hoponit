@@ -19,3 +19,5 @@ build
 
 # Vagrant
 # .vagrant
+
+hoponit/hoponit/settings/local.py
